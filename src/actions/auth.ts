@@ -12,6 +12,7 @@ export async function signUpAction(_: any, formData: FormData) {
 
   if (!validateFields.success) {
     return {
+      success: false,
       error: "올바른 이메일과 비밀번호를 입력해주세요.",
     };
   }
@@ -25,9 +26,9 @@ export async function signUpAction(_: any, formData: FormData) {
 
   if (error) {
     if (error.code == "user_already_exists") {
-      return { error: "이미 가입된 이메일입니다." };
+      return { success: false, error: "이미 가입된 이메일입니다." };
     }
-    return { error: error.message };
+    return { success: false, error: error.message };
   }
 
   // 가입 성공 후, login
@@ -49,6 +50,7 @@ export async function logInAction(_: any, formData: FormData) {
 
   if (!validateFields.success) {
     return {
+      success: false,
       error: "올바른 이메일과 비밀번호를 입력해주세요.",
     };
   }
@@ -61,8 +63,13 @@ export async function logInAction(_: any, formData: FormData) {
   });
 
   if (error) {
-    return { error: "올바른 이메일과 비밀번호를 입력해주세요." };
+    return {
+      email: validateFields.data.email,
+      success: false,
+      error: "올바른 이메일과 비밀번호를 입력해주세요.",
+    };
   }
 
   redirect("/skinlog");
+  return { data, success: true };
 }
