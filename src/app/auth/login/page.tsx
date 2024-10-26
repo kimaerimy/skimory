@@ -1,5 +1,5 @@
-import Login from "@/containers/auth/Login";
+import LogIn from "@/containers/auth/LogIn";
 
 export default function Page() {
-  return <Login />;
+  return <LogIn />;
 }
