@@ -9,19 +9,19 @@ export default function NavBar() {
         <ul className="flex gap-2 justify-between">
           <li>
             {/* 홈 아이콘 */}
-            <Link href="/skinlog">
+            <Link href="/summary">
               <House />
             </Link>
           </li>
           <li>
             {/* 기록 아이콘 */}
-            <Link href="/skinlog">
+            <Link href="/summary">
               <CalendarDays />
             </Link>
           </li>
           <li>
             {/* 기록 아이콘 */}
-            <Link href="/skinlog">
+            <Link href="/summary">
               <ClipboardList />
             </Link>
           </li>
