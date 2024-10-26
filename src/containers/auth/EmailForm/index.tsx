@@ -16,6 +16,7 @@ interface Props {
   ) => Promise<{
     success?: boolean;
     error?: string;
+    email?: string;
     data?: { user: User | null; session: Session | null };
   }>;
   children?: React.ReactNode;
@@ -45,6 +46,7 @@ export default function EmailForm({ buttonTitle, action }: Props) {
           name="email"
           placeholder="you@example.com"
           onChange={handleChange}
+          defaultValue={state?.email ? state.email : ""}
           error={!!errors?.email}
         />
         {errors?.email && <ErrorMessage message={errors?.email[0]} />}
