@@ -38,7 +38,7 @@ export async function signUpAction(_: any, formData: FormData) {
       password: validateFields.data.password,
     });
 
-  redirect("/summary");
+  redirect("/overview");
   return { data, success: true };
 }
 
@@ -70,6 +70,6 @@ export async function logInAction(_: any, formData: FormData) {
     };
   }
 
-  redirect("/summary");
+  redirect("/overview");
   return { data, success: true };
 }

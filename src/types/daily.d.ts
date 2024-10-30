@@ -7,16 +7,10 @@ export interface DailyInfo {
 }
 
 export interface DailyCondition {
-  skin_condition: string;
+  condition_type: string;
   moisture_level: number;
   oil_level: number;
-  trouble: {
-    [key: string]: boolean;
-  };
-  sensitivity: {
-    [key: string]: number;
-  };
-  redness: {
-    [key: string]: number;
-  };
+  trouble: string[];
+  sensitivity: string[];
+  redness: string[];
 }

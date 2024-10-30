@@ -2,16 +2,16 @@ import { DailyCondition, DailyInfo } from "@/types/daily";
 import { create } from "zustand";
 
 interface DailyConditionStore {
-  conditions: Record<string, DailyCondition> | null;
+  conditions: Record<string, DailyCondition>;
   setCondition: (date: string, data: DailyCondition) => void;
   setConditionsRange: (data: DailyInfo[]) => void;
 }
 
 export const useDailyConditionStore = create<DailyConditionStore>((set) => ({
-  conditions: null,
+  conditions: {},
   setCondition: (date, data) =>
     set((state) => ({
-      conditions: { ...state.conditions, [date]: data },
+      conditions: { ...state.conditions, [date]: { ...data } },
     })),
   setConditionsRange: (data) =>
     set((state) => {

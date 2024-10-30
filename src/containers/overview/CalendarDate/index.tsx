@@ -18,8 +18,8 @@ export default function CalendarDate({ date, condition }: Props) {
         className={`inline-flex flex-col items-center justify-center w-8 h-8 p-0 rounded-md ${
           date.isSame(dayjs(selectedDate), "day")
             ? "bg-slate-800 text-white"
-            : "bg-white text-black"
-        } hover:bg-slate-100`}
+            : "bg-white text-black hover:bg-slate-100"
+        } `}
         onClick={handleClick}
       >
         {date.format("D")}
