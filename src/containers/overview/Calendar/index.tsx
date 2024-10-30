@@ -14,7 +14,7 @@ export default function Calendar() {
   const { conditions, setCondition, setConditionsRange } =
     useDailyConditionStore();
 
-  const [calendarBaseDate, setCalendarBaseDate] = useState(dayjs(new Date()));
+  const [calendarBaseDate, setCalendarBaseDate] = useState(dayjs(selectedDate));
   const weekDates = getWeekDates(calendarBaseDate);
 
   const goToPreviousWeek = () => {
@@ -23,6 +23,11 @@ export default function Calendar() {
 
   const goToNextWeek = () => {
     setCalendarBaseDate((prevDate) => prevDate.add(1, "week"));
+  };
+
+  const goToToday = () => {
+    setCalendarBaseDate(dayjs(new Date()));
+    setSelectedDate(dayjs(new Date()).format("YYYY-MM-DD"));
   };
 
   useEffect(() => {
@@ -41,7 +46,19 @@ export default function Calendar() {
 
   return (
     <div className="border rounded-xl bg-white shadow-sm p-4">
-      <h1 className="text-2xl font-bold mb-4">{weekDates[0].format("M월")}</h1>
+      <h1 className="text-2xl font-bold mb-4 flex justify-between">
+        <span>
+          {weekDates[0].isSame(new Date(), "year")
+            ? weekDates[0].format("M월")
+            : weekDates[0].format("YYYY년 M월")}
+        </span>
+        <button
+          className="text-sm bg-blue-200 p-1 border rounded-md"
+          onClick={goToToday}
+        >
+          Today
+        </button>
+      </h1>
       <div className="">
         <table className="w-full">
           <thead>
@@ -50,7 +67,7 @@ export default function Calendar() {
               {weekDates.map((date, i) => (
                 <th
                   scope="col"
-                  key={i}
+                  key={`th-${date}-${i}`}
                   className="font-normal text-sm text-slate-500"
                 >
                   {date.format("ddd")}
@@ -70,12 +87,15 @@ export default function Calendar() {
                 </button>
               </td>
               {weekDates.map((date, i) => (
-                <td key={i} className="flex justify-center items-center">
+                <td
+                  key={`td-${date}-${i}`}
+                  className="flex justify-center items-center"
+                >
                   <CalendarDate
                     date={date}
                     condition={
                       conditions
-                        ? conditions[date.format("YYYY-MM-DD")]?.skin_condition
+                        ? conditions[date.format("YYYY-MM-DD")]?.condition_type
                         : ""
                     }
                   />

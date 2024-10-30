@@ -7,6 +7,26 @@ const config: Config = {
     "./src/containers/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-blue-100",
+    "bg-blue-200",
+    "bg-blue-300",
+    "bg-blue-400",
+    "bg-blue-500",
+    "bg-blue-600",
+    "bg-blue-700",
+    "bg-blue-800",
+    "bg-blue-900",
+    "bg-yellow-100",
+    "bg-yellow-200",
+    "bg-yellow-300",
+    "bg-yellow-400",
+    "bg-yellow-500",
+    "bg-yellow-600",
+    "bg-yellow-700",
+    "bg-yellow-800",
+    "bg-yellow-900",
+  ],
   theme: {
     extend: {
       colors: {
