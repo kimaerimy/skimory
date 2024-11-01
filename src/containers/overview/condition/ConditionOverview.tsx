@@ -15,7 +15,7 @@ export const ConditionOverview = () => {
           className="block bg-blue-800 p-2 rounded-md text-white"
           href={`/daily/${selectedDate}/condition`}
         >
-          수정하기
+          자세히 보기
         </Link>
       </div>
       <div className="grid grid-cols-3 gap-4">

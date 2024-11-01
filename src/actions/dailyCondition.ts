@@ -1,5 +1,6 @@
 "use server";
 
+import { ImageSchema } from "@/schemas/images";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -35,6 +36,7 @@ export const upSertDailyCondition = async (_: any, formData: FormData) => {
   } = await supabase.auth.getUser();
 
   const date = formData.get("date");
+
   const jsonData = {
     condition_type: String(formData.get("condition_type") ?? "good"),
     moisture_level: Number(formData.get("moisture_level") ?? 0),
@@ -42,6 +44,7 @@ export const upSertDailyCondition = async (_: any, formData: FormData) => {
     trouble: formData.getAll("trouble").map(String),
     sensitivity: formData.getAll("sensitivity").map(String),
     redness: formData.getAll("redness").map(String),
+    imgUrl: formData.get("imgUrl") as string,
   };
 
   if (user) {
@@ -74,7 +77,7 @@ export const upSertDailyCondition = async (_: any, formData: FormData) => {
       };
     }
 
-    redirect("/overview");
+    //redirect("/overview");
   }
   return {
     success: false,

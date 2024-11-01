@@ -48,7 +48,7 @@ export const ConditionArea = ({ title, name, value, options }: Props) => {
               alt="얼굴"
               width="300"
               height="343"
-              priority
+              loading="eager"
               style={{ width: "100%", height: "100%" }}
             />
             {checkedTrouble.includes("forehead") && (

@@ -1,4 +1,4 @@
-import LogIn from "@/containers/auth/LogIn";
+import LogIn from "@/containers/auth/Login";
 
 export default function Page() {
   return <LogIn />;

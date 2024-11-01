@@ -13,4 +13,5 @@ export interface DailyCondition {
   trouble: string[];
   sensitivity: string[];
   redness: string[];
+  imgUrl: string;
 }

@@ -4,12 +4,13 @@ import {
   fetchDailyCondition,
   upSertDailyCondition,
 } from "@/actions/dailyCondition";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useDailyConditionStore } from "@/store/dailyCondition";
 import { ConditionType } from "./ConditionType";
 import { ConditionLevel } from "./ConditionLevel";
 import { ConditionArea } from "./ConditionArea";
+import { ConditionImageUpload } from "./ConditionImageUpload";
 
 export const ConditionForm = ({ date }: { date: string }) => {
   const conditions = useDailyConditionStore((state) => state.conditions);
@@ -18,7 +19,7 @@ export const ConditionForm = ({ date }: { date: string }) => {
     upSertDailyCondition,
     null
   );
-
+  const [imgUrl, setImgUrl] = useState<string>(conditions[date]?.imgUrl ?? "");
   const conditionsByDate = conditions[date] ?? {
     condition_type: "good",
     moisture_level: 0,
@@ -26,6 +27,7 @@ export const ConditionForm = ({ date }: { date: string }) => {
     trouble: [],
     sensitivity: [],
     redness: [],
+    imgUrl: "",
   };
 
   const skinAreaOptions = {
@@ -50,6 +52,7 @@ export const ConditionForm = ({ date }: { date: string }) => {
       const data = await fetchDailyCondition(date);
       if (data) {
         setCondition(date, data[0].daily_condition);
+        setImgUrl(data[0].daily_condition.imgUrl);
       }
     };
     if (!conditions[date]) {
@@ -60,6 +63,7 @@ export const ConditionForm = ({ date }: { date: string }) => {
   return (
     <form action={formAction}>
       <input type="hidden" name="date" value={date} />
+      <input type="hidden" name="imgUrl" value={imgUrl} />
       <div className="flex flex-col gap-y-4">
         <ConditionType
           title="오늘의 피부컨디션 등록하기"
@@ -95,6 +99,7 @@ export const ConditionForm = ({ date }: { date: string }) => {
           options={skinAreaOptions}
           value={conditionsByDate.redness}
         />
+        <ConditionImageUpload imgUrl={imgUrl} setImgUrl={setImgUrl} />
         <div>
           <button
             type="submit"
