@@ -1,6 +1,5 @@
 import ButtonOutline from "@/components/ButtonOutline";
 import HorizontalLine from "@/components/HorizontalLine";
-import { IconGoogle } from "../../../../public/svgs";
 import Link from "next/link";
 import EmailForm from "../EmailForm";
 import { logInAction } from "@/actions/auth";
@@ -20,7 +19,6 @@ export default function LogIn() {
         <div className="flex flex-col gap-4">
           <ButtonOutline>
             <div className="flex items-center justify-center gap-1">
-              <IconGoogle className="text-slate-400 w-[14px] h-[14px]" />
               <p>google로 로그인</p>
             </div>
           </ButtonOutline>
