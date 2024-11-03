@@ -3,6 +3,9 @@
     "next/core-web-vitals",
     "next/typescript",
     "eslint:recommended",
+    "prettier",
     "plugin:prettier/recommended"
-  ]
+  ],
+  "plugins": ["prettier"],
+  "ignorePatterns": ["node_modules/", ".next/", ".vercel/"]
 }

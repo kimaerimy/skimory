@@ -8,25 +8,21 @@ export default function NavBar() {
       <div className="container max-w-4xl mx-auto px-6 py-3">
         <ul className="flex gap-2 justify-between">
           <li>
-            {/* 홈 아이콘 */}
             <Link href="/overview">
               <House />
             </Link>
           </li>
           <li>
-            {/* 기록 아이콘 */}
-            <Link href="/overview">
+            <Link href="/products">
               <CalendarDays />
             </Link>
           </li>
           <li>
-            {/* 기록 아이콘 */}
             <Link href="/overview">
               <ClipboardList />
             </Link>
           </li>
           <li>
-            {/* 세팅 아이콘 */}
             <Link href="/settings">
               <UserRoundCog />
             </Link>
